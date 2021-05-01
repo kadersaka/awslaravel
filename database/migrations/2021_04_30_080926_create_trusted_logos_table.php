@@ -16,6 +16,7 @@ class CreateTrustedLogosTable extends Migration
         Schema::create('trusted_logos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('path');
             $table->string('url');
             $table->timestamps();
         });

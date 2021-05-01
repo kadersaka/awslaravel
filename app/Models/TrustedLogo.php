@@ -9,7 +9,7 @@ class TrustedLogo extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'url',
+        'url', 'path', 'name'
     ];
 
 }
