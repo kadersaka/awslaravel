@@ -8,9 +8,14 @@ use App\Models\Concerns\UsesUuid;
 
 class TrustedLogo extends Model
 {
-    use HasFactory;
+    //use HasFactory;
 
     protected $guarded = []; 
 
+    /*
+    protected $fillable = [
+        'url', 'path', 'name'
+    ];
+    */
 
 }
