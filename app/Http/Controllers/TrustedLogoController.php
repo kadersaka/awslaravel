@@ -37,8 +37,12 @@ class TrustedLogoController extends Controller
     {
                //
         $path = $request->file('logo')->store('logos', 's3');
-      //  $path = $request->file('logo')->store('logos');
-        return $path;
+        //  $path = $request->file('logo')->store('logos');
+        $logo = new TrustedLogo();
+        $logo->name = basename($path);
+        $logo->url = Storage::disk('s3')->url($path);
+        $logo->save();
+        return $logo;
        // dd($request->file('logo'));
     }
 
