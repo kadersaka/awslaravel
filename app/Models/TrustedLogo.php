@@ -12,8 +12,5 @@ class TrustedLogo extends Model
 
     protected $guarded = []; 
 
-    protected $fillable = [
-        'url', 'path', 'name'
-    ];
 
 }
