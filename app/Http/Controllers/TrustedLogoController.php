@@ -36,7 +36,7 @@ class TrustedLogoController extends Controller
      */
     public function store(Request $request)
     {
-               //
+        //
         $path = $request->file('logo')->store('logos', 's3');
         //  $path = $request->file('logo')->store('logos');
         $logo = new TrustedLogo();
@@ -57,6 +57,14 @@ class TrustedLogoController extends Controller
     public function show(TrustedLogo $trustedLogo)
     {
         return Storage::disk('s3')->response($trustedLogo->path);
+    }
+
+    public function temporarlink(TrustedLogo $trustedLogo)
+    {
+        $url = Storage::disk('s3')->temporaryUrl(
+            $trustedLogo->path, now()->addHours(24)
+        );
+        return $url;
     }
 
     /**
@@ -88,9 +96,8 @@ class TrustedLogoController extends Controller
      * @param  \App\Models\TrustedLogo  $trustedLogo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(TrustedLogo $trustedLogo)
     {
-
-        return Storage::disk('s3')->delete($request->path);
+        return Storage::disk('s3')->delete($trustedLogo);
     }
 }

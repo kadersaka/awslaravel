@@ -24,5 +24,6 @@ Route::get('getfile', 'TrustedLogoController@show');
 Route::prefix('file')->group(function(){
     Route::post('/store', 'TrustedLogoController@store');
     Route::get('/read/{trustedLogo}', 'TrustedLogoController@show');
-    Route::delete('/delete', 'TrustedLogoController@destroy');
+    Route::get('/temporarlink/{trustedLogo}', 'TrustedLogoController@temporarlink');
+    Route::delete('/delete/{trustedLogo}', 'TrustedLogoController@destroy');
 });
