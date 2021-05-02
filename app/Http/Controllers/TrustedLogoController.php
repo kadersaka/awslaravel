@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\TrustedLogo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+//require 'vendor/autoload.php';
+//require __DIR__.'/../vendor/autoload.php';
 class TrustedLogoController extends Controller
 {
     /**
@@ -57,6 +58,11 @@ class TrustedLogoController extends Controller
     public function show(TrustedLogo $trustedLogo)
     {
         return Storage::disk('s3')->response($trustedLogo->path);
+    }
+
+    public function showdirect(TrustedLogo $trustedLogo)
+    {
+        return $trustedLogo->url;
     }
 
     public function temporarlink(TrustedLogo $trustedLogo)
