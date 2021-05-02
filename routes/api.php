@@ -35,10 +35,10 @@ Route::prefix('file')->group(function(){
  * Images files with encryption
  */
 Route::prefix('secureimages')->group(function(){
-    Route::post('/store', 'TrustedLogoController@store');
-    Route::get('/read/{trustedLogo}', 'TrustedLogoController@show');
-    Route::get('/temporarlink/{trustedLogo}', 'TrustedLogoController@temporarlink');
-    Route::delete('/delete/{trustedLogo}', 'TrustedLogoController@destroy');
+    Route::post('/store', 'SecureImageController@store');
+    Route::get('/read/{trustedLogo}', 'SecureImageController@show');
+    Route::get('/temporarlink/{trustedLogo}', 'SecureImageController@temporarlink');
+    Route::delete('/delete/{trustedLogo}', 'SecureImageController@destroy');
 });
 /**
  * video files with encryption
