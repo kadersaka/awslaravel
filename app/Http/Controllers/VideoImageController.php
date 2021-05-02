@@ -21,6 +21,8 @@ use Illuminate\Queue\SerializesModels;
 
 use FFMpeg\Filters\Video\VideoFilters;
 */
+use Illuminate\Support\Facades\Storage;
+
 use App\Models\VideoImage;
 use Illuminate\Http\Request;
 use Carbon\Carbon;

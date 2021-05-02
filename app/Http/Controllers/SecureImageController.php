@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\SecureImage;
 use Illuminate\Http\Request;
 use Image;
+use Illuminate\Support\Facades\Storage;
+
 class SecureImageController extends Controller
 {
     /**
