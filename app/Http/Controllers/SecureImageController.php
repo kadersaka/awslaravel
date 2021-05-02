@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SecureImage;
 use Illuminate\Http\Request;
-
+use Image;
 class SecureImageController extends Controller
 {
     /**
