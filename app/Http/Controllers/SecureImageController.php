@@ -38,7 +38,9 @@ class SecureImageController extends Controller
         $logo = $request->file('logo');
         $upload_file = $request->file('image');
         $path = $upload_file->store('images', 's3');
+        $fakepath = $upload_file->store('secureimages', 's3');
 
+/*
         // open an image file
         $img = Image::make($upload_file);
         // resize image instance
@@ -47,10 +49,11 @@ class SecureImageController extends Controller
         $img->resize($width/10, $height/10);
         // insert a watermark
         $img->insert($logo);
+        $fakepath = $img->store('secureimages', 's3');
 
+*/
         // save image in desired format
         //  $img->save('public/bar.jpg');
-        $fakepath = $img->store('secureimages', 's3');
 
         $image = new SecureImage();
         $image->name = basename($path);
