@@ -66,7 +66,7 @@ class SecureImageController extends Controller
         $image->fakeurl = Storage::disk('s3')->url($fakepath);
         $image->save();
 
-        return $video;    
+        return $image;    
     }
 
     /**
