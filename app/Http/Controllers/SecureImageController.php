@@ -41,8 +41,9 @@ class SecureImageController extends Controller
         $upload_file = $request->file('image');
         $path = $upload_file->store('images', 's3');
       //  $fakepath = $upload_file->store('secureimages', 's3');
+      $url = Storage::disk('s3')->url($path);
 
-      return path;
+      return $url;
 /*
         // open an image file
         $img = Image::make($upload_file);
