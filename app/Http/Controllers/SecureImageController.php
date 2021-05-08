@@ -45,11 +45,18 @@ class SecureImageController extends Controller
 
       $img = Image::make($upload_file);
       // resize image instance
+      /*
+$img->resize(null, 1000, function ($constraint) {
+    $constraint->aspectRatio();
+});
+
+      */
       $height = Image::make($upload_file)->height();
       $width = Image::make($upload_file)->width();
       $img->resize($width/10, $height/10);
       // insert a watermark
       $img->insert($logo);
+      $path = Storage::disk('s3')->put('secureimages/'.basename($img->stream), $img->stream());
       $fakepath = $img->store('secureimages', 's3');
       return Storage::disk('s3')->url($fakepath);
 /*
