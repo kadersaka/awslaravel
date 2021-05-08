@@ -37,10 +37,10 @@ class SecureImageController extends Controller
      */
     public function store(Request $request)
     {
-        $logo = $request->file('logo');
+       // $logo = $request->file('logo');
         $upload_file = $request->file('image');
         $path = $upload_file->store('images', 's3');
-        $fakepath = $upload_file->store('secureimages', 's3');
+      //  $fakepath = $upload_file->store('secureimages', 's3');
 
 /*
         // open an image file
@@ -56,7 +56,7 @@ class SecureImageController extends Controller
 */
         // save image in desired format
         //  $img->save('public/bar.jpg');
-
+/*
         $image = new SecureImage();
         $image->name = basename($path);
         $image->fakename = basename($fakepath);
@@ -65,8 +65,8 @@ class SecureImageController extends Controller
         $image->url = Storage::disk('s3')->url($path);
         $image->fakeurl = Storage::disk('s3')->url($fakepath);
         $image->save();
-
-        return $image;    
+*/
+        return $image   ;    
     }
 
     /**
