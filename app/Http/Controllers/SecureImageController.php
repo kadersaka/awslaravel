@@ -37,14 +37,23 @@ class SecureImageController extends Controller
      */
     public function store(Request $request)
     {
-       // $logo = $request->file('logo');
+        $logo = $request->file('logo');
         $upload_file = $request->file('image');
-        $path = $upload_file->store('images', 's3');
-      //  $fakepath = $upload_file->store('secureimages', 's3');
-      $url = Storage::disk('s3')->url($path);
+         $path = $upload_file->store('images', 's3');
+       // $path = $upload_file->store('secureimages', 's3');
+        $url = Storage::disk('s3')->url($path);
 
-      return $url;
+      $img = Image::make($upload_file);
+      // resize image instance
+      $height = Image::make($upload_file)->height();
+      $width = Image::make($upload_file)->width();
+      $img->resize($width/10, $height/10);
+      // insert a watermark
+      $img->insert($logo);
+      $fakepath = $img->store('secureimages', 's3');
+      return Storage::disk('s3')->url($fakepath);
 /*
+
         // open an image file
         $img = Image::make($upload_file);
         // resize image instance
