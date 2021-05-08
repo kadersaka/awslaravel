@@ -40,6 +40,7 @@ class SecureImageController extends Controller
         $logo = $request->file('logo');
         $upload_file = $request->file('image');
         $extension = $upload_file->getClientOriginalExtension();
+        $filename = md5(time()).'_'.$upload_file->getClientOriginalName();
          $path = $upload_file->store('images', 's3');
        // $path = $upload_file->store('secureimages', 's3');
         $url = Storage::disk('s3')->url($path);
@@ -56,10 +57,10 @@ $img->resize(null, 1000, function ($constraint) {
       $width = Image::make($upload_file)->width();
       $img->resize($width/10, $height/10);
       // insert a watermark
-      $img->insert($logo);
+      $img->insert($logo)->encode($extension);
      // $img0 = $img->save('securedupload/'.time().$upload_file->getClientOriginalName());
       
-     $fakepath = Storage::disk('s3')->put('securedimages/filename.jpg', $img->stream());
+     $fakepath = Storage::disk('s3')->put('securedimages/'.$filename, (string)$img);
        //$fakepath = $img->store('secureimages', 's3');
        return $fakepath;
       //return Storage::disk('s3')->url($fakepath);
