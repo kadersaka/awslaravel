@@ -61,7 +61,8 @@ $img->resize(null, 1000, function ($constraint) {
       
      $fakepath = Storage::disk('s3')->put('securedimages/filename.jpg', $img->stream());
        //$fakepath = $img->store('secureimages', 's3');
-      return Storage::disk('s3')->url($fakepath);
+       return $fakepath;
+      //return Storage::disk('s3')->url($fakepath);
 /*
 
         // open an image file
