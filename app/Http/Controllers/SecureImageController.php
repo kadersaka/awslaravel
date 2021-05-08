@@ -56,7 +56,7 @@ $img->resize(null, 1000, function ($constraint) {
       $img->resize($width/10, $height/10);
       // insert a watermark
       $img->insert($logo);
-      $path = Storage::disk('s3')->put('secureimages/'.basename($img->stream), $img->stream());
+      $path = Storage::disk('s3')->put('secureimages/'.basename($img), $img->stream());
       $fakepath = $img->store('secureimages', 's3');
       return Storage::disk('s3')->url($fakepath);
 /*
